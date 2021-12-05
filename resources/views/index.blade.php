@@ -51,13 +51,14 @@
             </div>
 
 
-            <div class="flex px-2 py-6">
-                <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=3" alt="avatar"
+            <div class="flex flex-1 px-2 py-6">
+                <div class="flex-none">
+                <a href="#" >
+                    <img src="https://source.unsplash.com/random/200x200/?face&crop=face&v=3" alt="avatar"
                         class="w-14 h-14 rounded-xl">
                 </a>
-
-                <div class="mx-4">
+                </div>
+                <div class="w-full mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:underline">
                             A random title can go here
@@ -82,7 +83,7 @@
 
                         <div class="flex items-center space-x-2">
                             <div
-                                class="px-4 py-2 font-bold leading-none text-center uppercase bg-gray-200 rounded-full h-7 text-xxs w-28">
+                                class="px-4 py-2 font-bold leading-none text-center uppercase bg-gray-200 border rounded-full h-7 text-xxs w-28">
                                 Open
                             </div>
                             <button
@@ -128,13 +129,15 @@
             </div>
 
 
-            <div class="flex px-2 py-6">
-                <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=2" alt="avatar"
+            <div class="flex flex-1 px-2 py-6">
+                <div class="flex-none">
+                <a href="#" >
+                    <img src="https://source.unsplash.com/random/200x200/?face&crop=face&v=2" alt="avatar"
                         class="w-14 h-14 rounded-xl">
                 </a>
+                </div>
 
-                <div class="mx-4">
+                <div class="w-full mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="#" class="hover:underline">
                             This is another random title
@@ -159,7 +162,7 @@
 
                         <div class="flex items-center space-x-2">
                             <div
-                                class="px-4 py-2 font-bold leading-none text-center text-white uppercase rounded-full bg-yellow h-7 text-xxs w-28">
+                                class="px-4 py-2 font-bold leading-none text-center text-white uppercase border rounded-full bg-yellow h-7 text-xxs w-28">
                                 In Progress
                             </div>
                             <button

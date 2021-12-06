@@ -86,21 +86,131 @@
     <div class="flex items-center justify-between mt-6 buttons-container">
 
         <div class="flex items-center ml-6 space-x-4">
-            <button type="button"
-                class="flex items-center justify-center w-32 h-8 px-6 py-3 text-xs font-semibold text-white transition ease-in border border-blue bg-blue rounded-xl hover:bg-blue-hover duration:150">
-                <span class="ml-1">Reply</span>
-            </button>
+            <div class="relative">
+                <button type="button"
+                    class="flex items-center justify-center w-32 h-8 px-6 py-3 font-semibold text-white transition ease-in border text-s border-blue bg-blue rounded-xl hover:bg-blue-hover duration:150">
+                    <span class="ml-1">Reply</span>
+                </button>
 
-            <button type="button"
-                class="flex items-center justify-center h-8 px-6 py-3 text-xs font-semibold transition ease-in bg-gray-200 border border-gray-200 w-36 rounded-xl hover:border-gray-400 duration:150">
+                {{-- Reply submenu --}}
+                <div
+                    class="absolute z-10 mt-2 text-sm font-semibold text-left bg-white w-104 rounded-xl shadow-dialog">
+                    <form action="#" class="px-4 py-6 space-y-4">
+                        <div>
+                            <textarea name="post_comment" id="post_comment" cols="30" rows="4"
+                                class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                                placeholder="Don't be shy. Share your thoughts."></textarea>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button type="submit"
+                                class="flex items-center justify-center w-1/2 h-8 px-6 py-3 font-semibold text-white transition ease-in border text-s border-blue bg-blue rounded-xl hover:bg-blue-hover duration:150">
+                                Post Comment
+                            </button>
+                            <button type="button"
+                                class="flex items-center justify-center w-32 h-8 px-6 py-3 text-xs font-semibold transition ease-in bg-gray-200 border border-gray-200 rounded-xl hover:border-gray-400 duration:150">
+                                <span clas="ml-2 ">
+                                    <svg class="w-4 text-gray-600 transform -rotate-45" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span>Attach</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                <span>Set Status</span>
-                <span>
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </span>
-            </button>
+            <div class="relative">
+
+                <button type="button"
+                    class="flex items-center justify-center h-8 px-6 py-3 font-semibold transition ease-in bg-gray-200 border border-gray-200 text-s w-36 rounded-xl hover:border-gray-400 duration:150">
+
+                    <span>Set Status</span>
+                    <span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+
+                {{-- Set Status submenu --}}
+                <div class="absolute z-20 mt-2 text-sm font-semibold text-left bg-white w-76 rounded-xl shadow-dialog">
+                    <form action="#" class="px-4 py-6 space-y-4">
+                        <div class="space-y-2">
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input class="bg-gray-200 border-none form-radio text-green" type="radio" checked=""
+                                        name="radio-direct" value="1" class="bg-green">
+                                    <span class="ml-2">Open</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input class="bg-gray-200 border-none form-radio text-purple" type="radio"
+                                        name="radio-direct" value="2">
+                                    <span class="ml-2">Considering</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input class="bg-gray-200 border-none form-radio text-yellow" type="radio"
+                                        name="radio-direct" value="2">
+                                    <span class="ml-2">In progress</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input class="bg-gray-200 border-none form-radio text-green" type="radio"
+                                        name="radio-direct" value="2">
+                                    <span class="ml-2">Implemented</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center">
+                                    <input class="bg-gray-200 border-none form-radio text-red" type="radio"
+                                        name="radio-direct" value="2">
+                                    <span class="ml-2">Closed</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <textarea name="update_comment" id="update_comment" cols="30" rows="3"
+                            class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                            placeholder="Add an updated comment (Optional)."></textarea>
+
+                        <div class="flex items-center space-x-3">
+                            <button type="button"
+                                class="flex items-center justify-center w-32 h-8 px-6 py-3 text-xs font-semibold transition ease-in bg-gray-200 border border-gray-200 rounded-xl hover:border-gray-400 duration:150">
+                                <span clas="ml-2 ">
+                                    <svg class="w-4 text-gray-600 transform -rotate-45" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span>Attach</span>
+                            </button>
+
+                            <button type="submit"
+                                class="flex items-center justify-center w-1/2 h-8 px-6 py-3 font-semibold text-white transition ease-in border text-s border-blue bg-blue rounded-xl hover:bg-blue-hover duration:150">
+                                Update
+                            </button>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                              <input class="bg-gray-200 border-none disabled:rounded form-checkbox" name="notify_voters" type="checkbox" checked="">
+                              <span class="ml-2">Notify all voters</span>
+                            </label>
+                          </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
 
         <div class="flex items-center justify-center space-x-3">
@@ -113,10 +223,9 @@
                 </div>
             </div>
 
-            <button
-                type="button"
-                class="w-32 h-8 px-6 py-2 text-xs font-semibold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 rounded-xl hover:border-gray-400"
-            >    vote
+            <button type="button"
+                class="w-32 h-8 px-6 py-2 text-xs font-semibold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 rounded-xl hover:border-gray-400">
+                vote
             </button>
         </div>
 

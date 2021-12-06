@@ -81,12 +81,12 @@
                             <div class="text-gray-900">3 Comments</div>
                         </div>
 
-                        <div class="flex items-center space-x-2">
+                        <div x-data="{isOpen:false}" class="flex items-center space-x-2">
                             <div
                                 class="px-4 py-2 font-bold leading-none text-center uppercase bg-gray-200 border rounded-full h-7 text-xxs w-28">
                                 Open
                             </div>
-                            <button
+                            <button @click="isOpen=!isOpen"
                                 class="relative px-3 py-2 transition ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7 duration:150">
                                 <svg class="w-6 h-4 " fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +95,10 @@
                                     </path>
                                 </svg>
 
-                                <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-dialog w-44 rounded-xl">
+                                <ul
+                                x-show="isOpen" x-transition.origin.top.left.duration.500ms
+                                @click.away="isOpen=false" x-cloak @keydown.escape.window="isOpen=false"
+                                    class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-dialog w-44 rounded-xl">
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as spam</a></li>
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete Post</a></li>
                                 </ul>
@@ -160,12 +163,12 @@
                             <div class="text-gray-900">3 Comments</div>
                         </div>
 
-                        <div class="flex items-center space-x-2">
+                        <div x-data="{isOpen:false}" class="flex items-center space-x-2">
                             <div
                                 class="px-4 py-2 font-bold leading-none text-center text-white uppercase border rounded-full bg-yellow h-7 text-xxs w-28">
                                 In Progress
                             </div>
-                            <button
+                            <button @click="isOpen=!isOpen"
                                 class="relative px-3 py-2 transition ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7 duration:150">
                                 <svg class="w-6 h-4 " fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +177,9 @@
                                     </path>
                                 </svg>
 
-                                <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-dialog w-44 rounded-xl">
+                                <ul x-show="isOpen" x-transition.origin.top.left.duration.500ms
+                                @click.away="isOpen=false" x-cloak @keydown.escape.window="isOpen=false"
+                                    class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-dialog w-44 rounded-xl">
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as spam</a></li>
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete Post</a></li>
                                 </ul>

@@ -15,6 +15,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @livewireStyles
     </head>
     <body class="font-sans text-sm text-gray-900 bg-gray-background">
         <header class="flex flex-col items-center justify-between px-8 py-4 md:flex-row">
@@ -53,7 +55,7 @@
                     class="mt-16 bg-white border-2 md:sticky md:top-8 border-blue rounded-xl"
                     style="
                           border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
-                            
+
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             background-origin: border-box;
                             background-clip: content-box, border-box;
@@ -118,5 +120,6 @@
                 </div>
             </div>
         </main>
+        @livewireScripts
     </body>
 </html>

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Idea;
+use App\Models\Status;
 use App\Models\Category;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,16 +17,20 @@ class ShowIdeasTest extends TestCase
     {
         $categoryOne = Category::factory()->create(['name' => 'category1']);
         $categoryTwo = Category::factory()->create(['name' => 'category2']);
+        $statusOne = Status::factory()->create(['name' => 'Open']);
+        $statusTwo = Status::factory()->create(['name' => 'Closed']);
 
         $idea1 = Idea::factory()->create([
             'title' => 'My first title',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
             'description' => "Description of the first idea."
         ]);
 
         $idea2 = Idea::factory()->create([
             'title' => 'My second title',
             'category_id' => $categoryTwo->id,
+            'status_id' => $statusTwo->id,
             'description' => "Description of the second idea."
         ]);
 
@@ -34,26 +39,31 @@ class ShowIdeasTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee($idea1->title);
         $response->assertSee($categoryOne->name);
+        $response->assertSee($statusOne->name);
         $response->assertSee($idea1->description);
         $response->assertSee($idea2->title);
         $response->assertSee($categoryTwo->name);
         $response->assertSee($idea2->description);
+        $response->assertSee($statusTwo->name);
     }
 
     public function test_single_idea_shows_on_the_show_page()
     {
         $categoryOne = Category::factory()->create(['name' => 'category1']);
         $categoryTwo = Category::factory()->create(['name' => 'category2']);
+        $statusOne = Status::factory()->create(['name' => 'Open']);
 
         $idea1 = Idea::factory()->create([
             'title' => 'My first title',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
             'description' => "Description of the first idea."
         ]);
 
         $idea2 = Idea::factory()->create([
             'title' => 'My second title',
             'category_id' => $categoryTwo->id,
+            'status_id' => $statusOne->id,
             'description' => "Description of the second idea."
         ]);
 
@@ -63,6 +73,7 @@ class ShowIdeasTest extends TestCase
         $response->assertSee($idea1->title);
         $response->assertSee($idea1->description);
         $response->assertSee($categoryOne->name);
+        $response->assertSee($statusOne->name);
         $response->assertDontSee($idea2->title);
         $response->assertDontSee($idea2->description);
         $response->assertDontSee($categoryTwo->name);
@@ -71,9 +82,13 @@ class ShowIdeasTest extends TestCase
     public function test_ideas_pagination_works()
     {
         $categoryOne = Category::factory()->create(['name' => 'category1']);
+        $statusOne = Status::factory()->create(['name' => 'Open']);
 
         Idea::factory(Idea::PAGINATION_COUNT + 1)->create(
-            ['category_id' => $categoryOne->id]
+            [
+                'category_id' => $categoryOne->id,
+                'status_id' => $statusOne->id
+            ]
         );
 
         $ideaOne = Idea::find(1);
@@ -96,16 +111,19 @@ class ShowIdeasTest extends TestCase
     public function test_same_title_different_slugs()
     {
         $categoryOne = Category::factory()->create(['name' => 'category1']);
+        $statusOne = Status::factory()->create(['name' => 'Open']);
 
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
             'description' => 'Description for my first idea',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'My First Idea',
             'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
             'description' => 'Another Description for my first idea',
         ]);
 

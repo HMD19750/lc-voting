@@ -100,12 +100,12 @@ class ShowIdeasTest extends TestCase
         $ideaLast->save();
 
         $response = $this->get(route('idea.index', $ideaOne));
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaLast->title);
-
-        $response = $this->get('/?page=2');
         $response->assertDontSee($ideaOne->title);
         $response->assertSee($ideaLast->title);
+
+        $response = $this->get('/?page=2');
+        $response->assertSee($ideaOne->title);
+        $response->assertDontSee($ideaLast->title);
     }
 
     public function test_same_title_different_slugs()

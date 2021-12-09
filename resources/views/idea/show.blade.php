@@ -25,7 +25,7 @@
 
                 <div class="flex flex-col justify-between mt-6 md:flex-row md:items-center">
                     <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
-                        <div class="hidden font-bold text-gray-900 md:block">{{ $idea->user->username }}</div>
+                        <div class="hidden font-bold text-gray-900 md:block">{{ $idea->user->name }}</div>
                         <div class="hidden md:block">&bull;</div>
                         <div>{{ $idea->created_at->diffForHumans() }}</div>
                         <div>&bull;</div>

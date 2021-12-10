@@ -49,7 +49,6 @@
                             </ul>
                         </button>
                     </div>
-
                     <div class="flex items-center mt-4 md:hidden md:mt-0">
                         <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
                             <div class="text-sm font-bold leading-none">{{ $votesCount }}</div>

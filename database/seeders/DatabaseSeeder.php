@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
         // Generate unique votes
 
         foreach (range(1, 20) as $user_id) {
+
             foreach (range(1, 100) as $idea_id) {
                 if ($idea_id % 2 == 0) {
                     Vote::factory()->create([

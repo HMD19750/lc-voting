@@ -31,7 +31,7 @@
     <div class="my-8 space-y-6 ideas-container">
 
         @foreach($ideas as $idea)
-            <livewire:idea-index 
+            <livewire:idea-index
                 :key="$idea->id"
                 :idea="$idea"
                 :votesCount="$idea->votes_count"
@@ -42,6 +42,7 @@
 
     {{-- Paginator --}}
     <div class="my-8">
-        {{ $ideas->onEachSide(5)->links() }}
+        {{-- {{ $ideas->onEachSide(5)->links() }} --}}
+{{ $ideas->appends(request()->query())->links() }}
     </div> {{-- End of paginator --}}
 </div>

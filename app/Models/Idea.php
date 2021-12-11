@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Vote;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -68,5 +69,20 @@ class Idea extends Model
         return Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
             ->exists();
+    }
+
+    public function vote(User $user)
+    {
+        Vote::create([
+            'user_id' => $user->id,
+            'idea_id' => $this->id
+        ]);
+    }
+    public function removeVote($user)
+    {
+        Vote::where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->first()
+            ->delete();
     }
 }

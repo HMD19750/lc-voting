@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\VoteNotFoundException;
 use App\Models\User;
 use App\Models\Vote;
 use App\Models\Category;
@@ -80,9 +81,14 @@ class Idea extends Model
     }
     public function removeVote($user)
     {
-        Vote::where('user_id', $user->id)
+        $voteToDelete = Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
-            ->first()
-            ->delete();
+            ->first();
+
+        if ($voteToDelete) {
+            $voteToDelete->delete();
+        } else {
+            throw new VoteNotFoundException;
+        }
     }
 }

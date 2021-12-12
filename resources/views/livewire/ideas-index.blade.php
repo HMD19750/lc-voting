@@ -1,11 +1,11 @@
 <div>
     <div class="flex flex-col space-y-3 filters md:flex-row md:space-y-0 md:space-x-6">
         <div class="w-full md:w-1/3">
-            <select name="category" id="category" class="w-full px-4 py-2 border-none rounded-xl">
-                <option value="Category One">Category One</option>
-                <option value="Category Two">Category Two</option>
-                <option value="Category Three">Category Three</option>
-                <option value="Category Four">Category Four</option>
+            <select wire:model="category" name="category" id="category" class="w-full px-4 py-2 border-none rounded-xl">
+                <option value="All categories">All categories</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="w-full md:w-1/3">
@@ -31,11 +31,7 @@
     <div class="my-8 space-y-6 ideas-container">
 
         @foreach($ideas as $idea)
-            <livewire:idea-index
-                :key="$idea->id"
-                :idea="$idea"
-                :votesCount="$idea->votes_count"
-            />
+        <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
         @endforeach
 
     </div> <!-- end ideas-container -->
@@ -43,6 +39,6 @@
     {{-- Paginator --}}
     <div class="my-8">
         {{-- {{ $ideas->onEachSide(5)->links() }} --}}
-{{ $ideas->appends(request()->query())->links() }}
+        {{ $ideas->appends(request()->query())->links() }}
     </div> {{-- End of paginator --}}
 </div>

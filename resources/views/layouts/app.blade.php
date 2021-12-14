@@ -21,7 +21,7 @@
 
 <body class="font-sans text-sm text-gray-900 bg-gray-background">
     <header class="flex flex-col items-center justify-between px-8 py-4 md:flex-row">
-        <a href="#"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a>
+        <a href="/"><img src="{{ asset('img/logo.svg') }}" alt="logo"></a>
         <div class="flex items-center mt-2 md:mt-0">
             @if (Route::has('login'))
             <div class="px-6 py-4">

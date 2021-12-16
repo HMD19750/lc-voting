@@ -66,6 +66,20 @@ class CreateIdeaTest extends TestCase
             ->set('description', 'Description of idea')
             ->call('createIdea')
             ->assertRedirect(('/'));
+
+        $response = $this->actingAs($user)->get(route('idea.index'));
+        $response->assertSuccessful();
+        $response->assertSee("My first idea");
+        $response->assertSee("Description of idea");
+
+        $this->assertDatabaseHas('ideas', [
+            'title' => 'My first idea'
+        ]);
+
+        $this->assertDatabaseHas('votes', [
+            'idea_id' => 1,
+            'user_id' => 1
+        ]);
     }
 
     public function test_creating_two_ideas_with_same_title_still_works_but_has_different_slugs()

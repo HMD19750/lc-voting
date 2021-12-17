@@ -30,7 +30,7 @@
                             class="{{ $idea->getStatusClasses() }} px-4 py-2 font-bold leading-none text-center uppercase rounded-full text-xxs w-28 h-7">
                             {{ $idea->status->name }}
                         </div>
-                        
+
                         <div class="relative">
 
                             <button
@@ -46,11 +46,18 @@
                             <ul class="absolute right-0 z-10 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0"
                                 x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false">
-                                <li><a href="#"
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
-                                        Mark as Spam
+
+                                <li><a
+                                    href="#"
+                                    @click="
+                                        $dispatch('custom-show-edit-modal')
+                                        isOpen=false
+                                        "
+                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                        Edit Idea
                                     </a>
                                 </li>
+
                                 <li><a href="#"
                                         class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
                                         Delete Idea
@@ -58,10 +65,11 @@
                                 </li>
 
                                 <li><a href="#"
-                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
-                                        Edit Idea
-                                    </a>
-                                </li>
+                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                    Mark as Spam
+                                </a>
+                            </li>
+
                             </ul>
 
                         </div>

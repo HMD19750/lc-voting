@@ -4,6 +4,11 @@
     x-show="isOpen"
     @keydown.escape.window="isOpen=false"
     @custom-show-edit-modal.window="isOpen=true"
+    x-init="
+        window.livewire.on('ideaWasUpdated',()=>{
+            isOpen=false
+        })
+        "
     class="fixed inset-0 z-10 overflow-y-auto "
     aria-labelledby="modal-title" role="dialog"
     aria-modal="true"
@@ -43,11 +48,11 @@
                     You have 1 hour to edit your idea from the time you created it.
                 </p>
 
-                <form wire:submit.prevent='createIdea' action="#" method="POST" class="px-4 py-6 space-y-4">
+                <form wire:submit.prevent='updateIdea' action="#" method="POST" class="px-4 py-6 space-y-4">
                     <div>
                         <input wire:model.defer="title" type="text" required
                             class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
-                            placeholder="Your Idea">
+                            placeholder="Your Idea" >
                         @error('title')
                         <p class="mt-1 text-xs text-red">
                             {{ $message }}
@@ -58,16 +63,18 @@
                         <select wire:model.defer="category" name="category_add" id="category_add"
                             class="w-full px-4 py-2 text-sm bg-gray-100 border-none rounded-xl">
 
-
-                            <option value="category-1">Category 1</option>
-
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                         </select>
 
                     </div>
                     <div>
                         <textarea wire:model.defer="description" name="idea" id="idea" cols="30" rows="4" required
                             class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
-                            placeholder="Describe your idea"></textarea>
+                            >
+
+                        </textarea>
                         @error('description')
                         <p class="mt-1 text-xs text-red">
                             {{ $message }}
@@ -86,7 +93,7 @@
                         </button>
                         <button type="submit"
                             class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
-                            <span class="ml-1">Submit</span>
+                            <span class="ml-1">Update</span>
                         </button>
                     </div>
 

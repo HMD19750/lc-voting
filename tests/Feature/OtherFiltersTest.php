@@ -199,9 +199,13 @@ class OtherFiltersTest extends TestCase
             });
     }
 
-    public function test_no_filters_works_correctly()
+
+
+    public function test_spam_filter_works_correctly()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'email' => 'hmd19570@gmail.com'
+        ]);
 
         $categoryOne = Category::factory()->create(['name' => 'category1']);
 
@@ -212,7 +216,8 @@ class OtherFiltersTest extends TestCase
             'title' => 'My first title',
             'category_id' => $categoryOne->id,
             'status_id' => $statusImplemented->id,
-            'description' => "Description of the first idea."
+            'description' => "Description of the first idea.",
+            'spam_reports' => 0
         ]);
 
         $ideaTwo = Idea::factory()->create([
@@ -220,7 +225,8 @@ class OtherFiltersTest extends TestCase
             'title' => 'My second title',
             'category_id' => $categoryOne->id,
             'status_id' => $statusImplemented->id,
-            'description' => "Description of the first idea."
+            'description' => "Description of the first idea.",
+            'spam_reports' => 33
         ]);
 
         $ideaThree = Idea::factory()->create([
@@ -228,16 +234,18 @@ class OtherFiltersTest extends TestCase
             'title' => 'My third title',
             'category_id' => $categoryOne->id,
             'status_id' => $statusImplemented->id,
-            'description' => "Description of the first idea."
+            'description' => "Description of the first idea.",
+            'spam_reports' => 44
         ]);
 
 
-        Livewire::test(IdeasIndex::class)
-            ->set('filter', 'No Filter')
+        Livewire::actingAs($user)
+            ->test(IdeasIndex::class)
+            ->set('filter', 'Spam Report')
             ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->count() == 3
+                return $ideas->count() == 2
                     && $ideas->first()->title = "My third title"
-                    && $ideas->last()->title = "My first title";
+                    && $ideas->last()->title = "My second title";
             });
     }
 }

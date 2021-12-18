@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button wire:click="markIdeaAsSpam" x-ref="confirmButton" type="button"
+                <button wire:click="markIdeaAsNotSpam" x-ref="confirmButton" type="button"
                     class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-blue hover:bg-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:ml-3 sm:w-auto sm:text-sm">
                     Reset spam counter
                 </button>

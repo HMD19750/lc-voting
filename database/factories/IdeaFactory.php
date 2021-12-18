@@ -19,7 +19,8 @@ class IdeaFactory extends Factory
             'category_id' => $this->faker->numberBetween(1, 6),
             'status_id' => $this->faker->numberBetween(1, 5),
             'title' => ucwords($this->faker->words(4, true)),
-            'description' => $this->faker->paragraph(5)
+            'description' => $this->faker->paragraph(5),
+            'spam_reports' => 0
         ];
     }
 }

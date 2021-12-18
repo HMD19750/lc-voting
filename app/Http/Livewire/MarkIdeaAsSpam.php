@@ -7,7 +7,7 @@ use App\Models\Vote;
 use Livewire\Component;
 use Illuminate\Http\Response;
 
-class DeleteIdea extends Component
+class MarkIdeaAsSpam extends Component
 {
 
     public $idea;
@@ -17,21 +17,22 @@ class DeleteIdea extends Component
         $this->idea = $idea;
     }
 
-
-
-    public function deleteIdea()
+    public function markIdeaAsSpam()
     {
-        if (auth()->guest() || auth()->user()->cannot('delete', $this->idea)) {
+        if (auth()->guest()) {
             abort(Response::HTTP_FORBIDDEN);
         }
-        Vote::where('idea_id', $this->idea->id)->delete();
-        Idea::destroy($this->idea->id);
 
-        return redirect(route('idea.index'));
+        $this->idea->spam_reports++;
+        $this->idea->save();
+
+        $this->emit('ideaWasMarkedAsSpam');
     }
+
+
 
     public function render()
     {
-        return view('livewire.delete-idea');
+        return view('livewire.mark-idea-as-spam');
     }
 }

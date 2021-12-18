@@ -18,3 +18,6 @@ Als extra gemplementeerd(in IdeasIndex.php) dat full text search ook in de descr
 Twee tests werken niet:
 - test_single_idea_shows_on_the_show_page
 - function test_does_not_show_edit_idea_livewire_component_when_user_does_not_have_authorization
+
+# Aflevering 45 - Spam reports
+Het is beter om voor spam reporting een aparte tabel te maken zoals voor votes. Dat voorkomt spam-spamming!

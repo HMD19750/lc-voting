@@ -20,6 +20,7 @@ class CreateIdeasTable extends Migration
             $table->foreignId('status_id')->constrained();
             $table->string('title');
             $table->string('slug')->nullable();
+            $table->integer('spam_reports')->default(0);
             $table->text('description');
             $table->timestamps();
         });

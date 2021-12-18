@@ -7,7 +7,7 @@
         isOpen=true
         $nextTick(()=>$refs.confirmButton.focus())"
     x-init="
-    window.livewire.on('ideaWasDeleted',()=>{
+        window.livewire.on('ideaWasDeleted',()=>{
         isOpen=false
     })
     "

@@ -40,7 +40,13 @@
             <h4 class="mt-2 text-xl font-semibold md:mt-0">
                 <a href="{{ route('idea.show',$idea) }}" class="idea-link xl:hover:underline">{{ $idea->title }}</a>
             </h4>
+
             <div class="mt-3 text-gray-600 line-clamp-3">
+                @admin
+                    @if($idea->spam_reports>0)
+                <div class="mb-2 text-red">Spam reports: {{ $idea->spam_reports }}</div>
+                    @endif
+                @endadmin
                 {{ $idea->description }}
             </div>
 

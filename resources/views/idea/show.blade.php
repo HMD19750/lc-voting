@@ -11,23 +11,7 @@
 
     <livewire:idea-show :idea="$idea" :votesCount="$votesCount" />
 
-    {{-- Modal to edit idea --}}
-    @can('update',$idea)
-        <livewire:edit-idea :idea="$idea"/>
-    @endcan
-
-    {{-- Modal to delete idea --}}
-    @can('delete',$idea)
-        <livewire:delete-idea :idea="$idea"/>
-    @endcan
-
-        {{-- Modal to mark idea as spam --}}
-
-        <livewire:mark-idea-as-spam :idea="$idea"/>
-
-        {{-- Modal to mark idea as not spam --}}
-
-        <livewire:mark-idea-as-not-spam :idea="$idea"/>
+    <x-modals-container :idea="$idea" />
 
 
     <div class="relative pt-4 my-8 mt-1 space-y-6 comments-container md:ml-22">

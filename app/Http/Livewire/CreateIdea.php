@@ -49,7 +49,7 @@ class CreateIdea extends Component
             'idea_id' => $idea->id
         ]);
 
-        session()->flash('success_message', 'Idea was added successfully');
+        session()->flash('success_message', 'Idea was added successfully!');
 
         $this->reset();
 

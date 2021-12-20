@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vote;
 use App\Models\Status;
 use Livewire\Livewire;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Response;
 use App\Http\Livewire\EditIdea;
@@ -126,6 +127,40 @@ class DeleteIdeaTest extends TestCase
 
         $this->assertEquals(0, Idea::count());
         $this->assertEquals(0, Vote::count());
+    }
+
+    public function test_deleting_an_idea_works_when_user_has_authorization_and_idea_has_comments()
+    {
+
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'category1']);
+        $categoryTwo = Category::factory()->create(['name' => 'category2']);
+
+        $statusOne = Status::factory()->create(['name' => 'Open']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My first title',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
+            'description' => "Description of the first idea."
+        ]);
+
+        Comment::factory()->create([
+            'user_id' => $user->id,
+            'idea_id' => $idea->id
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(DeleteIdea::class, [
+                'idea' => $idea
+            ])
+            ->call('deleteIdea')
+            ->assertRedirect(route('idea.index'));
+
+        $this->assertEquals(0, Idea::count());
+        $this->assertEquals(0, Comment::count());
     }
 
     public function test_deleting_an_idea_works_when_user_is_admin_and_idea_has_votes()

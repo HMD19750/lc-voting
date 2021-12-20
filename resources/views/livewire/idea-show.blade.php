@@ -29,7 +29,9 @@
                         <div>&bull;</div>
                         <div>{{ $idea->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">3 Comments</div>
+                        <div class="text-gray-900">
+                             {{ $idea->comments->count() }} Comments
+                        </div>
                     </div>
                     <div class="flex items-center mt-4 space-x-2 md:mt-0" x-data="{ isOpen: false }">
                         <div

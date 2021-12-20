@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Idea;
 use App\Models\User;
-use App\Models\Status;
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class IdeaFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,22 +17,16 @@ class IdeaFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'category_id' => Category::factory(),
-            'status_id' => Status::factory(),
-            'title' => ucwords($this->faker->words(4, true)),
-            'description' => $this->faker->paragraph(5),
-            'spam_reports' => 0
+            'idea_id' => Idea::factory(),
+            'body' => $this->faker->paragraph(5)
         ];
     }
-
 
     public function existing()
     {
         return $this->state(function (array $attributes) {
             return [
                 'user_id' => $this->faker->numberBetween(1, 20),
-                'category_id' => $this->faker->numberBetween(1, 6),
-                'status_id' => $this->faker->numberBetween(1, 5),
             ];
         });
     }

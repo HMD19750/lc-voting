@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Exceptions\VoteNotFoundException;
 use App\Models\User;
 use App\Models\Vote;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\VoteNotFoundException;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -59,6 +60,11 @@ class Idea extends Model
     public function votes()
     {
         return $this->belongsToMany(User::class, 'votes');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function isVotedByUser(?User $user)          //? is to make class optional

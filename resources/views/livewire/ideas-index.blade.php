@@ -33,7 +33,7 @@
     <div class="my-8 space-y-6 ideas-container">
 
         @forelse($ideas as $idea)
-        
+
         <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
         @empty
         <p class="mt-6 font-bold text-center text-gray-400">Nothing found......</p>
@@ -44,6 +44,6 @@
     {{-- Paginator --}}
     <div class="my-8">
         {{-- {{ $ideas->onEachSide(5)->links() }} --}}
-        {{ $ideas->appends(request()->query())->links() }}
+        {{ $ideas->links() }}
     </div> {{-- End of paginator --}}
 </div>

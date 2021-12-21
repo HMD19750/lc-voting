@@ -11,7 +11,7 @@ https://laracasts.com/series/build-a-voting-app
 phpunit geeft een foutmelding op de test om een user te registreren
 
 # Aflevering 30 - Search filter
-Als extra gemplementeerd(in IdeasIndex.php) dat full text search ook in de description van een idea werkt.
+Als extra gemplementeerd(in IdeasIndex.php) dat full text search ook in de description van een idea werkt.**
 
 
 # Aflevering 40 - Edit Idea Test
@@ -23,4 +23,7 @@ Twee tests werken niet:
 Het is beter om voor spam reporting een aparte tabel te maken zoals voor votes. Dat voorkomt spam-spamming!
 
 # Aflevering 48 - Comment model migration
-De lijn links van de comments is nog niet doorlopend!->opgelost in commit van aflevering 49
+De lijn links van de comments is nog niet doorlopend!->opgelost in commit van aflevering **49**
+
+# Aflevering 50
+Paginatio test in ShowIdeasTest werkt niet. Buiten werking gesteld

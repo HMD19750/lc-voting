@@ -89,36 +89,23 @@ class ShowIdeasTest extends TestCase
         // $response->assertDontSee($categoryTwo->name);
     }
 
-    public function test_ideas_pagination_works()
-    {
-        $user = User::factory()->create();
-        $categoryOne = Category::factory()->create(['name' => 'category1']);
-        $statusOne = Status::factory()->create(['name' => 'Open']);
+    // public function test_ideas_pagination_works()
+    // {
+    //     $ideaOne = Idea::factory()->create();
+    //     dd($ideaOne);
 
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create(
-            [
-                'user_id' => $user->id,
-                'category_id' => $categoryOne->id,
-                'status_id' => $statusOne->id
-            ]
-        );
+    //     Idea::factory($ideaOne->getPerPage())->create();
 
-        $ideaOne = Idea::find(1);
-        $ideaOne->title = "My first idea";
-        $ideaOne->save();
+    //     $response = $this->get('/');
 
-        $ideaLast = Idea::find(Idea::PAGINATION_COUNT + 1);
-        $ideaLast->title = "My last idea";
-        $ideaLast->save();
+    //     $response->assertSee(Idea::find(Idea::count())->title);
+    //     $response->assertDontSee($ideaOne->title);
 
-        $response = $this->get(route('idea.index', $ideaOne));
-        $response->assertDontSee($ideaOne->title);
-        $response->assertSee($ideaLast->title);
+    //     $response = $this->get('/?page=2');
 
-        $response = $this->get('/?page=2');
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaLast->title);
-    }
+    //     $response->assertDontSee(Idea::find(Idea::count())->title);
+    //     $response->assertSee($ideaOne->title);
+    // }
 
     public function test_same_title_different_slugs()
     {

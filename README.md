@@ -23,4 +23,4 @@ Twee tests werken niet:
 Het is beter om voor spam reporting een aparte tabel te maken zoals voor votes. Dat voorkomt spam-spamming!
 
 # Aflevering 48 - Comment model migration
-De lijn links van de comments is nog niet doorlopend!
+De lijn links van de comments is nog niet doorlopend!->opgelost in commit van aflevering 49

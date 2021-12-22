@@ -27,8 +27,12 @@
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
+
+                @auth
+
                 <div class="flex items-center space-x-2" x-data="{ isOpen: false }">
                     <div class="relative">
+
                         <button
                             class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 border rounded-full hover:bg-gray-200 h-7"
                             @click="isOpen = !isOpen">
@@ -38,19 +42,42 @@
                                     style="color: rgba(163, 163, 163, .5)">
                             </svg>
                         </button>
+
                         <ul class="absolute right-0 z-10 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0"
                             x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
                             @keydown.escape.window="isOpen = false">
+
+                            @can('update',$comment)
+                            <li><a
+                                href="#"
+                                @click.prevent="
+                                    {{-- $dispatch('custom-show-edit-modal') --}}
+                                    Livewire.emit('setEditComment',{{ $comment->id }})
+                                    isOpen=false
+                                    "
+                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
+                                >
+                                    Edit Comment
+                                </a>
+                            </li>
+                            @endcan
+
                             <li><a href="#"
                                     class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
-                                    as Spam</a></li>
+                                    as Spam</a>
+                            </li>
+
                             <li><a href="#"
                                     class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
-                                    Post</a></li>
+                                    Post</a>
+                            </li>
                         </ul>
 
                     </div>
                 </div>
+
+                @endauth
+
             </div>
         </div>
     </div>

@@ -67,10 +67,15 @@
                                     as Spam</a>
                             </li>
 
-                            <li><a href="#"
-                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
-                                    Post</a>
+                            @can('delete',$comment)
+                            <li><a href="#" @click.prevent="
+                                Livewire.emit('setDeleteComment',{{ $comment->id }})
+                                isOpen=false
+                                " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                    Delete Comment
+                                </a>
                             </li>
+                            @endcan
                         </ul>
 
                     </div>

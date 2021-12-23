@@ -56,7 +56,7 @@
                                 @keydown.escape.window="isOpen = false">
 
                                 @can('update',$idea)
-                                <li><a href="#" @click="
+                                <li><a href="#" @click.prevent="
                                         $dispatch('custom-show-edit-modal')
                                         isOpen=false
                                         " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">

@@ -38,7 +38,7 @@ class IdeaFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'user_id' => $this->faker->numberBetween(1, 20),
-                'category_id' => $this->faker->numberBetween(1, 6),
+                'category_id' => $this->faker->numberBetween(1, 4),
                 'status_id' => $this->faker->numberBetween(1, 5),
             ];
         });

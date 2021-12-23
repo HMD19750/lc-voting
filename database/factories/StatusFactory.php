@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StatusFactory extends Factory
 {
-
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Status::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +22,7 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => ucwords($this->faker->words(2, true)),
+            'name' => $this->faker->words(2, true)
         ];
     }
 }

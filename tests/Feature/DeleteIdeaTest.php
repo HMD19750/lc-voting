@@ -10,11 +10,8 @@ use App\Models\Status;
 use Livewire\Livewire;
 use App\Models\Comment;
 use App\Models\Category;
-use Illuminate\Http\Response;
-use App\Http\Livewire\EditIdea;
 use App\Http\Livewire\IdeaShow;
 use App\Http\Livewire\DeleteIdea;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteIdeaTest extends TestCase
@@ -26,16 +23,11 @@ class DeleteIdeaTest extends TestCase
 
         $user = User::factory()->create();
 
-        $categoryOne = Category::factory()->create(['name' => 'category1']);
-
-        $statusOne = Status::factory()->create(['name' => 'Open']);
+        $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'title' => 'My first title',
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOne->id,
-            'description' => "Description of the first idea."
+            'status_id' => $statusImplemented->id
         ]);
 
         $this->actingAs($user)

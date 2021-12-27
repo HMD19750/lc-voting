@@ -2,14 +2,18 @@
     <div class="flex flex-col flex-1 px-4 py-6 md:flex-row">
         <div class="flex-none">
             <a href="#">
-                <img src="{{ $comment->user->getAvatar() }}" alt="avatar"
-                    class="w-14 h-14 rounded-xl">
+                <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
         </div>
         <div class="w-full md:mx-4">
             {{-- <h4 class="text-xl font-semibold">
                 <a href="#" class="hover:underline">A random title can go here</a>
             </h4> --}}
+            @admin
+            @if($comment->spam_reports>0)
+                <div class="mb-2 text-red">Spam reports: {{ $comment->spam_reports }}</div>
+            @endif
+            @endadmin
             <div class="text-gray-600 ">
                 {{ $comment->body }}
             </div>
@@ -20,10 +24,10 @@
                     <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                     @if($comment->user->id==$ideaUserId)
-                        <div class="px-3 py-1 bg-gray-100 border rounded-full">
-                            OP
-                        </div>
-                        <div>&bull;</div>
+                    <div class="px-3 py-1 bg-gray-100 border rounded-full">
+                        OP
+                    </div>
+                    <div>&bull;</div>
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
@@ -48,24 +52,36 @@
                             @keydown.escape.window="isOpen = false">
 
                             @can('update',$comment)
-                            <li><a
-                                href="#"
-                                @click.prevent="
+                            <li><a href="#" @click.prevent="
                                     {{-- $dispatch('custom-show-edit-modal') --}}
                                     Livewire.emit('setEditComment',{{ $comment->id }})
                                     isOpen=false
-                                    "
-                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
-                                >
+                                    " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
                                     Edit Comment
                                 </a>
                             </li>
                             @endcan
 
-                            <li><a href="#"
-                                    class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
-                                    as Spam</a>
+                            <li><a href="#" @click.prevent="
+                                Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
+                                isOpen=false
+                                " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                    Mark as Spam
+                                </a>
                             </li>
+
+
+                            @admin
+                                @if($comment->spam_reports>0)
+                                    <li><a href="#" @click.prevent="
+                                        Livewire.emit('setMarkAsNotSpamComment',{{ $comment->id }})
+                                        isOpen=false
+                                        " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                            Reset spam counter
+                                        </a>
+                                    </li>
+                                @endif
+                            @endadmin
 
                             @can('delete',$comment)
                             <li><a href="#" @click.prevent="

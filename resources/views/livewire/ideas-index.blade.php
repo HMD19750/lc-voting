@@ -14,11 +14,12 @@
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
                 @admin
-                <option value="Spam Report">Spam Report</option>
+                <option value="Spam Report">Spam Ideas</option>
+                <option value="Spam Comments">Spam Comments</option>
                 @endadmin
             </select>
         </div>
-        <div class="relative w-full md:w-2/3">
+        <div class="relative w-full md:w-1/3">
             <input wire:model="search" type="search" placeholder="Find an idea"
                 class="w-full px-4 py-2 pl-8 placeholder-gray-900 bg-white border-none rounded-xl">
             <div class="absolute top-0 flex h-full ml-2 itmes-center">

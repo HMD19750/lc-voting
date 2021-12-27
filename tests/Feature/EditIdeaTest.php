@@ -40,27 +40,27 @@ class EditIdeaTest extends TestCase
             ->assertSeeLivewire('edit-idea');
     }
 
-    // public function test_does_not_show_edit_idea_livewire_component_when_user_does_not_have_authorization()
-    // {
-    //     $user = User::factory()->create();
-    //     $userB = User::factory()->create();
+    public function test_does_not_show_edit_idea_livewire_component_when_user_does_not_have_authorization()
+    {
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
 
-    //     $categoryOne = Category::factory()->create(['name' => 'category1']);
+        $categoryOne = Category::factory()->create(['name' => 'category1']);
 
-    //     $statusOne = Status::factory()->create(['name' => 'Open']);
+        $statusOne = Status::factory()->create(['name' => 'Open']);
 
-    //     $idea = Idea::factory()->create([
-    //         'user_id' => $userB->id,
-    //         'title' => 'My first title',
-    //         'category_id' => $categoryOne->id,
-    //         'status_id' => $statusOne->id,
-    //         'description' => "Description of the first idea."
-    //     ]);
+        $idea = Idea::factory()->create([
+            'user_id' => $userB->id,
+            'title' => 'My first title',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
+            'description' => "Description of the first idea."
+        ]);
 
-    //     $this->actingAs($user)
-    //         ->get(route('idea.show', $idea))
-    //         ->assertDontSeeLivewire('edit-idea');
-    // }
+        $this->actingAs($user)
+            ->get(route('idea.show', $idea))
+            ->assertDontSeeLivewire('edit-idea');
+    }
 
     public function test_edit_idea_form_validation_works()
     {

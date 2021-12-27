@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vote;
 use App\Models\Status;
 use Livewire\Livewire;
+use App\Models\Comment;
 use App\Models\Category;
 use App\Http\Livewire\IdeasIndex;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -201,7 +202,7 @@ class OtherFiltersTest extends TestCase
 
 
 
-    public function test_spam_filter_works_correctly()
+    public function test_spam_ideas_filter_works_correctly()
     {
         $user = User::factory()->create([
             'email' => 'hmd19570@gmail.com'
@@ -246,6 +247,52 @@ class OtherFiltersTest extends TestCase
                 return $ideas->count() == 2
                     && $ideas->first()->title = "My third title"
                     && $ideas->last()->title = "My second title";
+            });
+    }
+
+    public function test_spam_comments_filter_works()
+    {
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'category1']);
+
+        $statusImplemented = Status::factory()->create(['id' => '4', 'name' => 'Implemented']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My first title',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusImplemented->id,
+            'description' => "Description of the first idea.",
+            'spam_reports' => 0
+        ]);
+
+        $commentOne = Comment::factory()->create([
+            'body' => 'aaaa',
+            'idea_id' => $idea->id,
+            'spam_reports' => 44
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'second title',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusImplemented->id,
+            'description' => "Description of the first idea.",
+            'spam_reports' => 0
+        ]);
+
+        $commentTwo = Comment::factory()->create([
+            'body' => 'bbbb',
+            'idea_id' => $idea->id,
+        ]);
+
+        Livewire::actingAs($userB)
+            ->test(IdeasIndex::class)
+            ->set('filter', 'Spam Comments')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() == 1;
             });
     }
 }

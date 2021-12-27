@@ -54,7 +54,14 @@
                 <form wire:submit.prevent='updateComment' action="#" method="POST" class="px-4 py-6 space-y-4">
 
                     <div>
-                        <textarea wire:model.defer="body" x-ref="body" required name="comment" id="comment" cols="30" rows="4"
+                        <textarea
+                            wire:model.defer="body"
+                            x-ref="body"
+                            required
+                            name="comment"
+                            id="comment"
+                            cols="30" rows="4"
+                            placholder="Type your comment"
                             class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
                             >
 

@@ -2,12 +2,15 @@
 
 namespace Tests\Feature\Comments;
 
-use App\Models\Comment;
+use Tests\TestCase;
 use App\Models\Idea;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Status;
+use App\Models\Comment;
+use App\Models\Category;
+use App\Http\Livewire\IdeaComment;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShowCommentsTest extends TestCase
 {
@@ -15,7 +18,20 @@ class ShowCommentsTest extends TestCase
 
     public function test_idea_comments_livewire_component_renders()
     {
-        $idea = Idea::factory()->create();
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'category1']);
+
+        $statusImplemented = Status::factory()->create(['id' => '4', 'name' => 'Implemented']);
+
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+            'title' => 'My first title',
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusImplemented->id,
+            'description' => "Description of the first idea.",
+            'spam_reports' => 0
+        ]);
 
         $commentOne = Comment::factory()->create([
             'idea_id' => $idea->id,
@@ -27,19 +43,7 @@ class ShowCommentsTest extends TestCase
         $response->assertSeeLivewire('idea-comments');
     }
 
-    public function test_idea_comment_livewire_component_renders()
-    {
 
-        $idea = Idea::factory()->create();
-
-        $commentOne = Comment::factory()->create([
-            'idea_id' => $idea->id,
-            'body' => 'This is my first comment'
-        ]);
-
-        $this->get(route('idea.show', $idea))
-            ->assertSeeLivewire(IdeaComment::class);
-    }
 
     public function test_no_comments_shows_appropriate_function()
     {

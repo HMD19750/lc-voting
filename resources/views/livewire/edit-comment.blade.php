@@ -61,7 +61,7 @@
                             name="comment"
                             id="comment"
                             cols="30" rows="4"
-                            placholder="Type your comment"
+                            placeholder="Type your comment"
                             class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
                             >
 

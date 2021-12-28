@@ -1,14 +1,25 @@
-<div class="relative flex mt-4 bg-white comment-container rounded-xl">
+<div class="
+        @if($comment->is_status_update)
+        is-status-update
+        {{ 'status-'.Str::kebab($comment->status->name) }}
+        @endif
+        relative flex mt-4 bg-white comment-container rounded-xl">
     <div class="flex flex-col flex-1 px-4 py-6 md:flex-row">
         <div class="flex-none">
             <a href="#">
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
+            @if($comment->user->isadmin())
+                <div class="mt-1 font-bold text-center uppercase text-blue text-xxs">Admin</div>
+            @endif
         </div>
         <div class="w-full md:mx-4">
-            {{-- <h4 class="text-xl font-semibold">
-                <a href="#" class="hover:underline">A random title can go here</a>
-            </h4> --}}
+            @if($comment->is_status_update)
+                <h4 class="mb-3 text-xl font-semibold">
+                    Status Changed to "{{ $comment->status->name }}"
+                </h4>
+            @endif
+
             @admin
             @if($comment->spam_reports>0)
                 <div class="mb-2 text-red">Spam reports: {{ $comment->spam_reports }}</div>
@@ -21,7 +32,12 @@
             <div class="flex items-center justify-between mt-6">
                 <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
 
-                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <div class="font-bold text-gray-900
+                    @if($comment->is_status_update) text-blue @endif
+                    ">
+                        {{ $comment->user->name }}
+                    </div>
+
                     <div>&bull;</div>
                     @if($comment->user->id==$ideaUserId)
                     <div class="px-3 py-1 bg-gray-100 border rounded-full">

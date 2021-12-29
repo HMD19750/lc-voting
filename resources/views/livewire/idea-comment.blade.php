@@ -3,7 +3,9 @@
         is-status-update
         {{ 'status-'.Str::kebab($comment->status->name) }}
         @endif
-        relative flex mt-4 bg-white comment-container rounded-xl">
+        relative flex mt-4 bg-white comment-container rounded-xl"
+        id="comment-{{ $comment->id }}"
+>
     <div class="flex flex-col flex-1 px-4 py-6 md:flex-row">
         <div class="flex-none">
             <a href="#">

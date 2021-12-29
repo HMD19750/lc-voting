@@ -25,9 +25,12 @@
         @if($notifications->isNotEmpty() && !$isLoading)
         @foreach($notifications as $notification )
 
-        <li><a href="{{ route('idea.show',$notification->data['idea_slug']) }}"
-            {{-- @click.prevent="isOpen=false"  --}}
-                class="flex px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+        <li><a
+                href="{{ route('idea.show',$notification->data['idea_slug']) }}"
+                @click.prevent="isOpen=false"
+                wire:click.prevent="markAsRead('{{ $notification->id }}')"
+                class="flex px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
+            >
                 <img src="{{ $notification->data['user_avatar'] }}" class="w-10 h-10 rounded-xl">
                 <div class="ml-4">
                     <div class="line-clamp-6">
@@ -48,27 +51,28 @@
 
         <li class="text-center border-t border-gray-300 ">
             <button
+                wire:click="markAllAsRead"
+                @click="isOpen=false"
                 class="block w-full px-5 py-4 font-semibold transition duration-150 ease-in focus:font-semibold hover:bg-gray-100">
                 Mark all as read
             </button>
         </li>
         @elseif($isLoading)
-        @foreach(range(1,3) as $item)
-            <li class="flex px-5 py-3 transition duration-150 ease-in animate-pulse">
-                <div class="w-10 h-10 bg-gray-200 rounded-xl"></div>
-                <div class="flex-1 ml-4 space-y-1">
-                    <div class="w-full h-4 bg-gray-200 rounded "></div>
-                    <div class="w-full h-4 bg-gray-200 rounded "></div>
-                    <div class="w-full h-4 bg-gray-200 rounded "></div>
-                    <div class="w-1/2 h-3 bg-gray-200 rounded-xl "></div>
-                </div>
-            </li>
-        @endforeach
-
+            @foreach(range(1,3) as $item)
+                <li class="flex px-5 py-3 transition duration-150 ease-in animate-pulse">
+                    <div class="w-10 h-10 bg-gray-200 rounded-xl"></div>
+                    <div class="flex-1 ml-4 space-y-1">
+                        <div class="w-full h-4 bg-gray-200 rounded "></div>
+                        <div class="w-full h-4 bg-gray-200 rounded "></div>
+                        <div class="w-full h-4 bg-gray-200 rounded "></div>
+                        <div class="w-1/2 h-3 bg-gray-200 rounded-xl "></div>
+                    </div>
+                </li>
+            @endforeach
         @else
-        <li class="w-40 py-6 mx-auto">
-            <p class="mt-6 mb-4 font-bold text-center text-gray-400">No new notifications.</p>
-        </li>
+            <li class="w-40 py-6 mx-auto">
+                <p class="mt-6 mb-4 font-bold text-center text-gray-400">No new notifications.</p>
+            </li>
         @endif
 
 

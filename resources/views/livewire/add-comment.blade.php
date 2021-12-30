@@ -88,9 +88,13 @@ class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold tex
             <p class="font-normal">
                 Please log in or register to post a comment.
             <div class="flex items-center mt-8 space-x-3">
-                <a href="{{ route('login') }}"
+                <a
+                    wire:click.prevent='redirectToLogin'
+                    href="{{ route('login') }}"
                     class="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">Login</a>
-                <a href="{{ route('register') }}"
+                <a
+                    wire:click.prevent='redirectToRegister'
+                    href="{{ route('register') }}"
                     class="flex items-center justify-center w-full px-6 py-3 mt-2 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 md:w-32 h-11 rounded-xl hover:border-gray-400 md:mt-0">Register</a>
             </div>
             </p>

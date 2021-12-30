@@ -7,6 +7,7 @@
 <div x-cloak
     x-data="{
         isOpen:false,
+        isError:@if($type=='success') false @elseif ($type='error') true @endif,
         messageToDisplay:'{{ $messageToDisplay }}',
         showNotification(message) {
             this.isOpen=true
@@ -21,38 +22,52 @@
             $nextTick(()=>showNotification(messageToDisplay))
         @else
             Livewire.on('ideaWasUpdated',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('ideaWasMarkedAsSpam',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('ideaWasMarkedAsNotSpam',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('statusWasUpdated',message=>{
+                isError=false
+                showNotification(message)
+            })
+
+            Livewire.on('statusWasUpdatedError',message=>{
+                isError=true
                 showNotification(message)
             })
 
             Livewire.on('commentWasAdded',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('commentWasUpdated',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('commentWasDeleted',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('commentWasMarkedAsSpam',message=>{
+                isError=false
                 showNotification(message)
             })
 
             Livewire.on('commentWasMarkedAsNotSpam',message=>{
+                isError=false
                 showNotification(message)
             })
         @endif
@@ -65,14 +80,24 @@
     class="fixed bottom-0 right-0 z-20 flex justify-between w-full px-4 py-5 mx-4 my-8 bg-white border shadow-lg max-w-cs sm:max-w-sm rounded-xl">
 
     <div class="flex items-center ">
-        @if($type=='error')
-            <svg class="w-6 h-6 text-red" fill="currentColor" viewBox="0 0 20 20" ><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
-        @else
-            <svg class="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+            x-show="isError"
+            class="w-6 h-6 text-red"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+        >
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+
+        <svg
+            x-show="!isError"
+            class="w-6 h-6 text-green"
+            fill="none" stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-        @endif
+        </svg>
+
         <div class="ml-2 font-semibold text-gray-500 texxt-sm sm:text-base" x-text="messageToDisplay"> </div>
     </div>
 

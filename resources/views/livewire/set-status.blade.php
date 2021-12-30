@@ -1,7 +1,7 @@
 <div class="relative" x-data="{ isOpen: false }" x-init="
-        window.livewire.on('statusWasUpdated',()=>{
-            isOpen=false
-        })">
+        Livewire.on('statusWasUpdated',()=>{isOpen=false})
+        Livewire.on('statusWasUpdatedError',()=>{isOpen=false})
+        ">
     <button type="button" @click="isOpen = !isOpen"
         class="flex items-center justify-center px-6 py-3 mt-2 text-sm font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 w-36 h-11 rounded-xl hover:border-gray-400 md:mt-0">
         <span>Set Status</span>

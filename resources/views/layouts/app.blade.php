@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laracasts Voting</title>
+    <title>{{ $title ?? 'Laracasts Voting' }}</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 
@@ -49,8 +54,13 @@
             </div>
             @endif
             <a href="#">
+                @auth
+                    <img src="{{ auth()->user()->getAvatar() }}" alt="avatar"
+                    class="w-10 h-10 rounded-full">
+                @else
                 <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
                     class="w-10 h-10 rounded-full">
+                @endauth
             </a>
         </div>
     </header>
@@ -59,7 +69,6 @@
         <div class="mx-auto w-70 md:mx-0 md:mr-5">
             <div class="mt-16 bg-white border-2 md:sticky md:top-8 border-blue rounded-xl" style="
                           border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
-                            border-image-slice: 1;
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             background-origin: border-box;
                             background-clip: content-box, border-box;
@@ -76,7 +85,7 @@
 
 
                 <livewire:create-idea />
- 
+
 
             </div>
         </div>

@@ -1,5 +1,9 @@
 <x-app-layout>
 
+    <x-slot name="title">
+        {{ $idea->title }}
+    </x-slot>
+   
     <div>
         <a href="{{ url()->previous() }}" class="flex items-center font-semibold hover:underline">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

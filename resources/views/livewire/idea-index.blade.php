@@ -47,7 +47,9 @@
                 <div class="mb-2 text-red">Spam reports: {{ $idea->spam_reports }}</div>
                     @endif
                 @endadmin
-                {{ $idea->description }}
+                <article class="prose-sm ">
+                    {!! Str::markdown($idea->description) !!}
+                </article>
             </div>
 
             <div class="flex flex-col justify-between mt-6 md:flex-row md:items-center">

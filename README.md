@@ -31,3 +31,5 @@ Paginatio test in ShowIdeasTest werkt niet. Buiten werking gesteld
 ##Toevoegen Markdown voor posts
 - Gebruiken van Str::markdown() helper method
 - Gebruiken van typography plugin van Tailwind om de markdown styling goed te krijgen
+- Geruiken van Flowbite toggle switch
+- 

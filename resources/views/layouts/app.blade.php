@@ -120,7 +120,7 @@
 
 
     <livewire:scripts />
-    <script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></script>
+    {{-- <script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></script> --}}
 </body>
 
 </html>

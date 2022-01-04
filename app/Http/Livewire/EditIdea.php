@@ -15,7 +15,6 @@ class EditIdea extends Component
     public $title;
     public $category;
     public $description;
-    public $mdToggle;
 
     protected $rules = [
         'title' => 'required|min:4',
@@ -29,7 +28,6 @@ class EditIdea extends Component
         $this->title = $idea->title;
         $this->description = $idea->description;
         $this->category = $idea->category_id;
-        $this->mdToggle = false;
     }
 
     public function updateIdea()

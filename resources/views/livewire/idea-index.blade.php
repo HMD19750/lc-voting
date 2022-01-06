@@ -47,7 +47,7 @@
                 <div class="mb-2 text-red">Spam reports: {{ $idea->spam_reports }}</div>
                     @endif
                 @endadmin
-                <article class="prose-sm ">
+                <article class="prose-sm prose ">
                     {!! Str::markdown($idea->description) !!}
                 </article>
             </div>

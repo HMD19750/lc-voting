@@ -86,7 +86,7 @@
                 </div>
 
 
-                <livewire:create-idea />
+                <livewire:create-idea-button />
 
 
             </div>
@@ -100,6 +100,8 @@
             </div>
         </div>
     </main>
+
+
 
     @if(session('success_message'))
         <x-notification-success

@@ -13,15 +13,15 @@
                 </h4>
 
                 <div class="mt-3 text-gray-600">
-                @admin
-                    @if($idea->spam_reports>0)
-                        <div class="mb-2 text-red">Spam reports: {{ $idea->spam_reports }}</div>
-                    @endif
-                @endadmin
+                    @admin
+                        @if($idea->spam_reports>0)
+                            <div class="mb-2 text-red">Spam reports: {{ $idea->spam_reports }}</div>
+                        @endif
+                    @endadmin
 
-                <article class="prose ">
-                        {!! Str::markdown($idea->description) !!}
-                </article>
+                    <article class="prose-sm prose">
+                            {!! Str::markdown($idea->description) !!}
+                    </article>
                 </div>
 
                 <div class="flex flex-col justify-between mt-6 md:flex-row md:items-center">

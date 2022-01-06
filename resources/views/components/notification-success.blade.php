@@ -26,6 +26,11 @@
                 showNotification(message)
             })
 
+            Livewire.on('ideaWasCreated',message=>{
+                isError=false
+                showNotification(message)
+            })
+
             Livewire.on('ideaWasMarkedAsSpam',message=>{
                 isError=false
                 showNotification(message)

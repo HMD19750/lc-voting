@@ -15,7 +15,7 @@ class CreateIdea extends Component
 
     public $title;
     public $category = 1;
-    public $description;
+    public $description = "";
 
     protected $rules = [
         'title' => 'required|min:4',
@@ -52,9 +52,9 @@ class CreateIdea extends Component
             'idea_id' => $idea->id
         ]);
 
-        session()->flash('success_message', 'Idea was added successfully!');
+        $this->emit('ideaWasCreated', 'The idea was created successfully!');
 
-        $this->reset();
+        // $this->reset();
 
         return redirect()->route('idea.index');
     }

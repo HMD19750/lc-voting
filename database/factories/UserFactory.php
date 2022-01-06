@@ -30,7 +30,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'email' => 'hmd19570@gmail.com',
+                config('app.admin_email'),
             ];
         });
     }

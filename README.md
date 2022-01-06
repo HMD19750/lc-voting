@@ -28,11 +28,14 @@ De lijn links van de comments is nog niet doorlopend!->opgelost in commit van af
 # Aflevering 50
 Paginatio test in ShowIdeasTest werkt niet. Buiten werking gesteld
 
-##Toevoegen Markdown voor posts
+## Toevoegen Markdown voor posts
 - Gebruiken van Str::markdown() helper method
 - Gebruiken van typography plugin van Tailwind om de markdown styling goed te krijgen
 - Gebruiken van Flowbite toggle switch
-- 
+
+## Admin data in .env
+Moved the meail of teh admin to .env. Accessible through app.config.
+
 
 #Todo
 de achtergrondkleur van de toggle switch in het editformulier aanpassen

@@ -80,13 +80,15 @@
                             </li>
                             @endcan
 
-                            <li><a href="#" @click.prevent="
-                                Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
-                                isOpen=false
-                                " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
-                                    Mark as Spam
-                                </a>
-                            </li>
+                            @if(!$comment->is_status_update)      {{-- Status updates mogen niet als spam worden gerapporteeerd --}}
+                                <li><a href="#" @click.prevent="
+                                    Livewire.emit('setMarkAsSpamComment',{{ $comment->id }})
+                                    isOpen=false
+                                    " class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">
+                                        Mark as Spam
+                                    </a>
+                                </li>
+                            @endif
 
 
                             @admin

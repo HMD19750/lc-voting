@@ -6,6 +6,7 @@ use App\Models\Idea;
 use App\Models\Comment;
 use Livewire\Component;
 use Illuminate\Http\Response;
+use App\Notifications\CommentAdded;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IdeaStatusUpdatedMailable;
 
@@ -47,13 +48,16 @@ class SetStatus extends Component
             $this->notifyAllVoters();
         }
 
-        Comment::create([
+        $newComment = Comment::create([
             'user_id' => auth()->id(),
             'idea_id' => $this->idea->id,
             'status_id' => $this->status,
             'body' => $this->comment ? $this->comment : "No comment was added.",
             'is_status_update' => true
         ]);
+
+        $newComment['body'] = "The status of your idea has been changed to " . $this->idea->status->name;
+        $this->idea->user->notify(new CommentAdded($newComment));
 
         $this->emit('statusWasUpdated', 'The status has been updated!');
     }

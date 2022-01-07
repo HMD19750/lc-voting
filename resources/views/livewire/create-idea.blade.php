@@ -57,7 +57,7 @@
                     </div>
                     <div>
                         <div x-show="!markDown">
-                            <textarea wire:model.defer="description" name="idea" id="idea" cols="30" rows="6" required
+                            <textarea wire:model="description" name="idea" id="idea" cols="30" rows="6" required
                                 class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl">
                             </textarea>
                             @error('description')

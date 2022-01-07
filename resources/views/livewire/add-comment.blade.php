@@ -1,6 +1,6 @@
 <div
     x-cloak
-    x-data="{isOpen:false }"
+    x-data="{isOpen:false,markDown:false }"
     x-init="
         Livewire.on('commentWasAdded', () => {
             isOpen = false
@@ -36,17 +36,18 @@
     class="relative z-10"
 >
 <button
-type="button"
-@click="
-    isOpen = !isOpen
-    if (isOpen) {
-        $nextTick(() => $refs.comment.focus())
-    }
-"
-class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover"
+    type="button"
+    @click="
+        isOpen = !isOpen
+        if (isOpen) {
+            $nextTick(() => $refs.comment.focus())
+        }
+    "
+    class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover"
 >
-        Reply
-    </button>
+Reply
+</button>
+
     <div class="absolute z-10 w-64 mt-2 text-sm font-semibold text-left bg-white md:w-104 shadow-dialog rounded-xl"
         x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
         @keydown.escape.window="isOpen = false">
@@ -54,7 +55,7 @@ class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold tex
         @auth
         <form wire:submit.prevent="addComment" action="#" class="px-4 py-6 space-y-4">
             <div>
-                <textarea wire:model="comment" x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
+                {{-- <textarea wire:model="comment" x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
                     class="w-full px-4 py-2 text-sm placeholder-gray-600 bg-gray-100 border-none rounded-xl"
                     placeholder="Go ahead, don't be shy. Share your thoughts..." required>
                 </textarea>
@@ -62,24 +63,55 @@ class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold tex
                     <p class="mt-1 text-xs text-red">
                         {{ $message }}
                     </p>
-                @enderror
+                @enderror --}}
+
+                <div>
+                    <div x-show="!markDown">
+                        <textarea wire:model="comment" name="idea" id="idea" cols="30" rows="6" required
+                            class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl">
+                        </textarea>
+                        @error('comment')
+                        <p class="mt-1 text-xs text-red">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div x-show="markDown"
+                        class="w-full px-4 py-2 overflow-auto text-sm bg-gray-100 border-none rounded-xl"
+                        style="height:153.5px;">
+                        <article class="prose-sm prose">
+                            {!! Str::markdown($comment) !!}
+                        </article>
+                    </div>
+
+
+                </div>
+                <div class="flex items-center justify-between mt-2 space-x-3">
+
+                    <div class="flex items-center justify-between w-60">
+                        <span class="hidden text-xs text-gray-700 md:block dark:text-gray-300 "
+                            :class="markDown ? 'font-medium' : 'font-bold'">Edit mode</span>
+                        <label for="mdToggle" class="relative flex items-center cursor-pointer">
+                            <input type="checkbox" id="mdToggle" class="sr-only " x-model="markDown">
+                            <div
+                                class="h-6 bg-gray-200 border border-gray-200 rounded-full w-11 toggle-bg dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+
+                        </label>
+                        <span class="text-xs text-gray-700 dark:text-gray-300 "
+                            :class="!markDown ? 'font-medium' : 'font-bold'">Markdown preview</span>
+                    </div>
+
+                </div>
 
             </div>
 
             <div class="flex flex-col items-center md:flex-row md:space-x-3">
                 <button type="submit"
-                    class="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
+                    class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
                     Post Comment
                 </button>
-                <button type="button"
-                    class="flex items-center justify-center w-full px-6 py-3 mt-2 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 md:w-32 h-11 rounded-xl hover:border-gray-400 md:mt-0">
-                    <svg class="w-4 text-gray-600 transform -rotate-45" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                    </svg>
-                    <span class="ml-1">Attach</span>
-                </button>
+
             </div>
 
         </form>

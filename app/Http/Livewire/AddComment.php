@@ -14,7 +14,7 @@ class AddComment extends Component
     use WithAuthRedirects;
 
     public $idea;
-    public $comment;
+    public $comment = "";
 
     protected $rules = [
         'comment' => 'required|min:4'

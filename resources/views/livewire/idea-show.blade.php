@@ -19,7 +19,7 @@
                         @endif
                     @endadmin
 
-                    <article class="prose-sm prose">
+                    <article class="leading-snug prose-sm prose">
                             {!! Str::markdown($idea->description) !!}
                     </article>
                 </div>

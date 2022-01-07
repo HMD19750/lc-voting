@@ -1,4 +1,4 @@
-<div class="relative" x-data="{ isOpen: false }" x-init="
+<div class="relative" x-data="{ isOpen: false,markDown:false }" x-init="
         Livewire.on('statusWasUpdated',()=>{isOpen=false})
         Livewire.on('statusWasUpdatedError',()=>{isOpen=false})
         ">
@@ -51,10 +51,48 @@
                 </div>
             </div>
 
-            <div>
+            {{-- <div>
                 <textarea wire:model="comment" name="update_comment" id="update_comments" cols="30" rows="3"
                     class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
                     placeholder="Add an update comment (optional)"></textarea>
+            </div> --}}
+
+            <div>
+                <div x-show="!markDown">
+                    <textarea wire:model="comment" name="idea" id="idea" cols="30" rows="6" required
+                        class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl">
+                    </textarea>
+                    @error('comment')
+                    <p class="mt-1 text-xs text-red">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+                <div x-show="markDown"
+                    class="w-full px-4 py-2 overflow-auto text-sm bg-gray-100 border-none rounded-xl"
+                    style="height:153.5px;">
+                    <article class="prose-sm prose">
+                        {!! Str::markdown($comment) !!}
+                    </article>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between space-x-3">
+
+                <div class="flex items-center justify-between w-60">
+                    <span class="hidden text-xs text-gray-700 md:block dark:text-gray-300 "
+                        :class="markDown ? 'font-medium' : 'font-bold'">Edit mode</span>
+                    <label for="mdToggle2" class="relative flex items-center cursor-pointer">
+                        <input type="checkbox" id="mdToggle2" class="sr-only " x-model="markDown">
+                        <div
+                            class="h-6 bg-gray-200 border border-gray-200 rounded-full w-11 toggle-bg dark:bg-gray-700 dark:border-gray-600">
+                        </div>
+
+                    </label>
+                    <span class="text-xs text-gray-700 dark:text-gray-300 "
+                        :class="!markDown ? 'font-medium' : 'font-bold'">Markdown preview</span>
+                </div>
+
             </div>
 
             <div class="flex items-center justify-between space-x-3">

@@ -28,7 +28,9 @@
             @endif
             @endadmin
             <div class="text-gray-600 ">
-                {!!  nl2br(e($comment->body )) !!}
+                <article class="leading-snug prose-sm prose">
+                    {!! Str::markdown($comment->body) !!}
+                </article>
             </div>
 
             <div class="flex items-center justify-between mt-6">

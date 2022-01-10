@@ -22,6 +22,7 @@ class IdeaShow extends Component
         'ideaWasMarkedAsSpam',
         'commentWasAdded',
         'commentWasDeleted',
+        'ideaWasUpdated'
     ];
 
     public function mount(Idea $idea, $votesCount)

@@ -35,18 +35,18 @@
     "
     class="relative z-10"
 >
-<button
+
+<x-button
     type="button"
-    @click="
-        isOpen = !isOpen
+    class="w-32 h-11"
+    @click.prevent="isOpen = !isOpen
         if (isOpen) {
-            $nextTick(() => $refs.comment.focus())
-        }
-    "
-    class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover"
+        $nextTick(() => $refs.comment.focus())
+        }"
 >
-Reply
-</button>
+    Reply
+</x-button>
+
 
     <div class="absolute z-10 w-64 mt-2 text-sm font-semibold text-left bg-white md:w-104 shadow-dialog rounded-xl"
         x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
@@ -55,16 +55,6 @@ Reply
         @auth
         <form wire:submit.prevent="addComment" action="#" class="px-4 py-6 space-y-4">
             <div>
-                {{-- <textarea wire:model="comment" x-ref="comment" name="post_comment" id="post_comment" cols="30" rows="4"
-                    class="w-full px-4 py-2 text-sm placeholder-gray-600 bg-gray-100 border-none rounded-xl"
-                    placeholder="Go ahead, don't be shy. Share your thoughts..." required>
-                </textarea>
-                @error('comment')
-                    <p class="mt-1 text-xs text-red">
-                        {{ $message }}
-                    </p>
-                @enderror --}}
-
                 <div>
                     <div x-show="!markDown">
                         <textarea wire:model="comment" name="idea" id="idea" cols="30" rows="6" required
@@ -107,10 +97,8 @@ Reply
             </div>
 
             <div class="flex flex-col items-center md:flex-row md:space-x-3">
-                <button type="submit"
-                    class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in border h-11 md:w-1/2 bg-blue rounded-xl border-blue hover:bg-blue-hover">
-                    Post Comment
-                </button>
+
+                <x-button color="blue" type="submit" class="w-1/2 h-11 md:w-1/2">Post Comment </x-button>
 
             </div>
 

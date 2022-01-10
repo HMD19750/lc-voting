@@ -91,10 +91,13 @@
                             <span class="text-xs text-gray-700 dark:text-gray-300 "
                                 :class="!markDown ? 'font-medium' : 'font-bold'">Markdown preview</span>
                         </div>
-                        <button type="submit"
-                            class="flex items-center justify-center w-1/4 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
-                            <span class="ml-1">Create</span>
-                        </button>
+
+                        <x-button
+                            class="flex items-center justify-center w-1/4 "
+                            type="submit"
+                        >
+                            Create
+                        </x-button>
                     </div>
 
                 </form>

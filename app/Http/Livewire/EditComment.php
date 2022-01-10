@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 class EditComment extends Component
 {
     public Comment $comment;
-    public $body;
+    public $body = "";
 
     protected $listeners = ['setEditComment'];
     protected $rules = [

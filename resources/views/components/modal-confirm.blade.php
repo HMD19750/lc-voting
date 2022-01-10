@@ -71,19 +71,26 @@
           </div>
         </div>
         <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button
-            wire:click="{{ $wireClick }}"
-            x-ref="confirmButton"
-            type="button"
-            class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-blue hover:bg-blue-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue sm:ml-3 sm:w-auto sm:text-sm">
-            {{ $modalConfirmButtonText }}
-          </button>
-          <button
-          @click="isOpen=false"
-            type="button"
-            class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-            Cancel
-          </button>
+
+            <x-button
+                wire:click="{{ $wireClick }}"
+                x-ref="confirmButton"
+                type="button"
+                class="justify-center w-full sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                color="blue"
+            >
+                {{ $modalConfirmButtonText }}
+            </x-button>
+
+
+            <x-button
+                @click="isOpen=false"
+                type="button"
+                class="justify-center w-full mr-4 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                color="gray"
+            >
+                Cancel
+            </x-button>
         </div>
       </div>
     </div>

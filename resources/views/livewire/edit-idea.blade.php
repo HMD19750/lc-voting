@@ -81,7 +81,7 @@
                     <div>
                         <div x-show="!markDown">
                             <textarea
-                                wire:model.defer="description"
+                                wire:model="description"
                                 name="idea"
                                 id="idea"
                                 cols="30"
@@ -102,7 +102,7 @@
                             class="w-full px-4 py-2 overflow-auto text-sm bg-gray-100 border-none rounded-xl"
                             style="height:153.5px;"
                         >
-                            <article class="prose-sm prose">
+                            <article class="leading-snug prose-sm prose">
                                 {!! Str::markdown($description) !!}
                             </article>
                         </div>
@@ -138,10 +138,16 @@
                                 Markdown preview
                             </span>
                         </div>
-                        <button type="submit"
+                        {{-- <button type="submit"
                             class="flex items-center justify-center w-1/4 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border h-11 bg-blue rounded-xl border-blue hover:bg-blue-hover">
                             <span class="ml-1">Update</span>
-                        </button>
+                        </button> --}}
+                        <x-button
+                            type="submit"
+                            class="w-1/4 "
+                        >
+                            Update
+                        </x-button>
                     </div>
 
                 </form>

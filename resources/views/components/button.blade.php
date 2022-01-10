@@ -1,3 +1,19 @@
-<button {{ $attributes->merge(['type' => 'submit', 'class' => 'inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150']) }}>
-    {{ $slot }}
+@props([
+    'color'=>'blue',
+])
+
+<button
+    @if($color=="blue")
+    {{ $attributes->merge([
+        'type' => 'submit',
+        'class' => 'inline-flex items-center uppercase px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in border bg-blue rounded-xl border-blue hover:bg-blue-hover'])}}
+    @else
+    {{ $attributes->merge([
+        'type' => 'submit',
+        'class' => 'inline-flex items-center uppercase px-6 py-3 text-xs font-semibold  transition duration-150 ease-in border bg-gray-200 rounded-xl border-gray-200 hover:border-gray-400'])}}
+    @endif
+
+>
+{{ $slot }}
 </button>
+

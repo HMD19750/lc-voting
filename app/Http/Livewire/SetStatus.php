@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Notifications\CommentAdded;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IdeaStatusUpdatedMailable;
+use App\Notifications\StatusChangeToVoters;
 
 
 class SetStatus extends Component
@@ -44,9 +45,6 @@ class SetStatus extends Component
         $this->idea->status_id = $this->status;
         $this->idea->save();
 
-        if ($this->notifyAllVoters) {
-            $this->notifyAllVoters();
-        }
 
         $newComment = Comment::create([
             'user_id' => auth()->id(),
@@ -60,6 +58,17 @@ class SetStatus extends Component
         $this->idea->user->notify(new CommentAdded($newComment));
 
         $this->emit('statusWasUpdated', 'The status has been updated!');
+
+        $newComment['body'] = "The status of the idea you voted for has been changed to " . $this->idea->status->name;
+
+
+
+        foreach ($this->idea->votes as $user) {
+            // Mail::to($user)
+            //     ->queue(new IdeaStatusUpdatedMailable($this->idea));
+
+            $user->notify(new StatusChangeToVoters($newComment));
+        };
     }
 
     public function notifyAllVoters()

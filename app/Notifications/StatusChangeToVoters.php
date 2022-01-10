@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class StatusChange extends Notification
+class StatusChangeToVoters extends Notification
 {
     use Queueable;
 

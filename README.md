@@ -39,6 +39,7 @@ Paginatio test in ShowIdeasTest werkt niet. Buiten werking gesteld
 - Moved the email of the admin to .env. Accessible through app.config.
 - Status change of idea also generates notification
 - almost all buttons now use button.blade.php component
+- when status of idea is changed, notification to all voters is a notification, not an email
 
 
 

@@ -36,7 +36,7 @@
             <div class="flex items-center justify-between mt-6">
                 <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
 
-                    <div class="font-bold text-gray-900
+                    <div class="font-bold text-gray-900"
                     @if($comment->is_status_update) text-blue @endif
                     ">
                         {{ $comment->user->name }}
@@ -50,6 +50,31 @@
                     <div>&bull;</div>
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
+                    <div>&bull;</div>
+
+                    @if($hasLiked)
+                        <button
+                            wire:click.prevent='like'
+                        >
+                            <div class="relative flex items-center justify-center w-8 h-8">
+                                <svg class="absolute z-0 w-7 h-7 text-red" fill="currentColor" viewBox="0 0 20 20" >
+                                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                                </svg>
+                                <div class="z-10 text-black text-xxs">{{ $likesCount }}</div>
+                            </div>
+                        </button>
+                    @else
+                        <button
+                            wire:click.prevent='like'
+                        >
+                            <div class="relative flex items-center justify-center w-8 h-8">
+                                <svg class="absolute z-0 w-7 h-7 text-blue" fill="currentColor" viewBox="0 0 20 20" >
+                                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                                </svg>
+                                <div class="z-10 text-white text-xxs">{{ $likesCount }}</div>
+                            </div>
+                        </button>
+                    @endif
                 </div>
 
                 @auth

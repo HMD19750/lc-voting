@@ -68,6 +68,7 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user)          //? is to make class optional
     {
+
         if (!$user) {                                    // Check for no user logged in
             return false;
         }
@@ -84,6 +85,7 @@ class Idea extends Model
             'idea_id' => $this->id
         ]);
     }
+
     public function removeVote($user)
     {
         $voteToDelete = Vote::where('user_id', $user->id)

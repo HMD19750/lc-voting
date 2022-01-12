@@ -107,8 +107,10 @@
                     <div class="flex items-center mt-4 md:hidden md:mt-0">
                         <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
                             <div class="text-sm font-bold leading-none @if($hasVoted) text-blue @endif">{{ $votesCount
-                                }}</div>
-                            <div class="font-semibold leading-none text-gray-400 text-xxs">Votes</div>
+                                }}--</div>
+                            <div class="font-semibold leading-none text-gray-400 text-xxs">
+                                {{ $votesCount>0 ? 'Votes' : 'Vote' }}
+                            </div>
                         </div>
                         @if($hasVoted)
                         <button wire:click.prevent='vote'
@@ -142,7 +144,9 @@
         <div class="items-center hidden space-x-3 md:flex">
             <div class="px-3 py-2 font-semibold text-center bg-white rounded-xl">
                 <div class="text-xl leading-snug @if($hasVoted) text-blue @endif">{{ $votesCount }}</div>
-                <div class="text-xs leading-none text-gray-400">Votes</div>
+                <div class="text-xs leading-none text-gray-400">
+                    {{ $votesCount==1 ? 'Vote' : 'Votes'  }}
+                </div>
             </div>
 
             @if ($hasVoted)

@@ -30,4 +30,40 @@ class Comment extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function isLikedByUser(?User $user)          //? is to make class optional
+    {
+        if (!$user) {                                    // Check for no user logged in
+            return false;
+        }
+
+        return Like::where('user_id', $user->id)
+            ->where('comment_id', $this->id)
+            ->exists();
+    }
+
+    public function like(User $user)
+    {
+        Like::create([
+            'user_id' => $user->id,
+            'comment_id' => $this->id
+        ]);
+    }
+    public function removeLike($user)
+    {
+        $likeToDelete = Like::where('user_id', $user->id)
+            ->where('comment_id', $this->id)
+            ->first();
+
+        if ($likeToDelete) {
+            $likeToDelete->delete();
+        } else {
+            throw new VoteNotFoundException;
+        }
+    }
 }

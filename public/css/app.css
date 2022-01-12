@@ -12584,6 +12584,12 @@ select {
   }
 }
 
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
 .animate-none {
   -webkit-animation: none;
           animation: none;
@@ -12607,6 +12613,11 @@ select {
 .animate-bounce {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
+}
+
+.animate-pulse-once {
+  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .cursor-auto {
@@ -39696,6 +39707,11 @@ select {
             animation: bounce 1s infinite;
   }
 
+  .sm\:animate-pulse-once {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   .sm\:cursor-auto {
     cursor: auto;
   }
@@ -66668,6 +66684,11 @@ select {
   .md\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .md\:animate-pulse-once {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .md\:cursor-auto {
@@ -93644,6 +93665,11 @@ select {
             animation: bounce 1s infinite;
   }
 
+  .lg\:animate-pulse-once {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   .lg\:cursor-auto {
     cursor: auto;
   }
@@ -120618,6 +120644,11 @@ select {
             animation: bounce 1s infinite;
   }
 
+  .xl\:animate-pulse-once {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   .xl\:cursor-auto {
     cursor: auto;
   }
@@ -147590,6 +147621,11 @@ select {
   .\32xl\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .\32xl\:animate-pulse-once {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .\32xl\:cursor-auto {

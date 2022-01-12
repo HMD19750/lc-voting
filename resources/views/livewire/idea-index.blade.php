@@ -10,7 +10,9 @@
     <div class="hidden px-5 py-8 border-r border-gray-100 md:block">
         <div class="text-center">
             <div class="text-2xl font-semibold @if($hasVoted) text-blue @endif">{{ $votesCount }}</div>
-            <div class="text-gray-500">Votes</div>
+            <div class="text-gray-500">
+                {{ $votesCount==1 ? 'Vote' : 'Votes' }}
+            </div>
         </div>
 
         <div class="mt-8">

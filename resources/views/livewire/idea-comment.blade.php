@@ -14,6 +14,38 @@
             @if($comment->user->isadmin())
                 <div class="mt-1 font-bold text-center uppercase text-blue text-xxs">Admin</div>
             @endif
+
+            @if(!$comment->is_status_update)  {{-- Like button is not shown for status updates --}}
+
+            {{-- Liking is only possible if you have not liked thecomment yet --}}
+                @if($hasLiked)
+                    <button
+                        wire:click.prevent='like'
+                        class="ml-3 "
+                    >
+                        <div class="relative flex items-center justify-center w-8 h-8">
+                            <svg class="absolute z-0 text-gray-200 w-7 h-7" fill="currentColor" viewBox="0 0 20 20" >
+                                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                            </svg>
+                            <div class="z-10 text-black text-xxs">{{ $likesCount }}</div>
+                        </div>
+                    </button>
+                @else
+                    <button
+                        wire:click.prevent='like'
+                        class="ml-3"
+                    >
+                        <div class="relative flex items-center justify-center w-8 h-8">
+                            <svg class="absolute z-0 w-7 h-7 text-blue" fill="currentColor" viewBox="0 0 20 20" >
+                                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                            </svg>
+                            <div class="z-10 text-white text-xxs">{{ $likesCount }}</div>
+                        </div>
+                    </button>
+                @endif
+            @endif
+
+
         </div>
         <div class="w-full md:mx-4">
             @if($comment->is_status_update)
@@ -50,6 +82,8 @@
                     <div>&bull;</div>
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
+
+
                 </div>
 
                 @auth

@@ -52,6 +52,15 @@ module.exports = {
             fontSize: {
                 xxs: ['0.625rem', { lineHeight: '1rem' }],
             },
+            animation: {
+                wiggle: "wiggle 2200ms ease-in-out"
+            },
+            keyframes: {
+                wiggle: {
+                    "0%, 100%": { transform: "rotate(-30deg)" },
+                    "50%": { transform: "rotate(30deg)" }
+                }
+            }
         },
     },
 
@@ -63,6 +72,6 @@ module.exports = {
 
     plugins: [require('@tailwindcss/forms'),
         require('@tailwindcss/line-clamp'),
-        require('@tailwindcss/typography')
+        require('@tailwindcss/typography'),
     ],
 };

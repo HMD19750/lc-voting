@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Livewire\Traits\WithAuthRedirects;
 use App\Models\Idea;
 use App\Models\Vote;
 use App\Models\Status;
+use App\Models\Comment;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use App\Http\Livewire\Traits\WithAuthRedirects;
 
 class IdeasIndex extends Component
 {
@@ -77,6 +78,9 @@ class IdeasIndex extends Component
                 })
                 ->when($this->filter && $this->filter == 'Top Voted', function ($query) {
                     return $query->orderByDesc('votes_count');
+                })
+                ->when($this->filter && $this->filter == 'Most Comments', function ($query) {
+                    return $query->orderByDesc('comments_count');
                 })
                 ->when($this->filter && $this->filter == 'My Ideas', function ($query) {
                     return $query->where('user_id', auth()->id());

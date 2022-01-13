@@ -8938,6 +8938,10 @@ select {
   width: 13rem;
 }
 
+.w-54 {
+  width: 13.6rem;
+}
+
 .w-56 {
   width: 14rem;
 }
@@ -12584,9 +12588,23 @@ select {
   }
 }
 
-@keyframes pulse {
+@-webkit-keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-30deg);
+  }
+
   50% {
-    opacity: .5;
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: rotate(30deg);
   }
 }
 
@@ -12615,9 +12633,9 @@ select {
           animation: bounce 1s infinite;
 }
 
-.animate-pulse-once {
-  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-wiggle {
+  -webkit-animation: wiggle 2200ms ease-in-out;
+          animation: wiggle 2200ms ease-in-out;
 }
 
 .cursor-auto {
@@ -36102,6 +36120,10 @@ select {
     width: 13rem;
   }
 
+  .sm\:w-54 {
+    width: 13.6rem;
+  }
+
   .sm\:w-56 {
     width: 14rem;
   }
@@ -39707,9 +39729,9 @@ select {
             animation: bounce 1s infinite;
   }
 
-  .sm\:animate-pulse-once {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .sm\:animate-wiggle {
+    -webkit-animation: wiggle 2200ms ease-in-out;
+            animation: wiggle 2200ms ease-in-out;
   }
 
   .sm\:cursor-auto {
@@ -63081,6 +63103,10 @@ select {
     width: 13rem;
   }
 
+  .md\:w-54 {
+    width: 13.6rem;
+  }
+
   .md\:w-56 {
     width: 14rem;
   }
@@ -66686,9 +66712,9 @@ select {
             animation: bounce 1s infinite;
   }
 
-  .md\:animate-pulse-once {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .md\:animate-wiggle {
+    -webkit-animation: wiggle 2200ms ease-in-out;
+            animation: wiggle 2200ms ease-in-out;
   }
 
   .md\:cursor-auto {
@@ -90060,6 +90086,10 @@ select {
     width: 13rem;
   }
 
+  .lg\:w-54 {
+    width: 13.6rem;
+  }
+
   .lg\:w-56 {
     width: 14rem;
   }
@@ -93665,9 +93695,9 @@ select {
             animation: bounce 1s infinite;
   }
 
-  .lg\:animate-pulse-once {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .lg\:animate-wiggle {
+    -webkit-animation: wiggle 2200ms ease-in-out;
+            animation: wiggle 2200ms ease-in-out;
   }
 
   .lg\:cursor-auto {
@@ -117039,6 +117069,10 @@ select {
     width: 13rem;
   }
 
+  .xl\:w-54 {
+    width: 13.6rem;
+  }
+
   .xl\:w-56 {
     width: 14rem;
   }
@@ -120644,9 +120678,9 @@ select {
             animation: bounce 1s infinite;
   }
 
-  .xl\:animate-pulse-once {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .xl\:animate-wiggle {
+    -webkit-animation: wiggle 2200ms ease-in-out;
+            animation: wiggle 2200ms ease-in-out;
   }
 
   .xl\:cursor-auto {
@@ -144018,6 +144052,10 @@ select {
     width: 13rem;
   }
 
+  .\32xl\:w-54 {
+    width: 13.6rem;
+  }
+
   .\32xl\:w-56 {
     width: 14rem;
   }
@@ -147623,9 +147661,9 @@ select {
             animation: bounce 1s infinite;
   }
 
-  .\32xl\:animate-pulse-once {
-    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .\32xl\:animate-wiggle {
+    -webkit-animation: wiggle 2200ms ease-in-out;
+            animation: wiggle 2200ms ease-in-out;
   }
 
   .\32xl\:cursor-auto {

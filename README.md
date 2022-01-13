@@ -12,6 +12,7 @@ https://laracasts.com/series/build-a-voting-app
 - when status of idea is changed, notification to all voters is a notification, not an email
 - implemented likes for comments
 - text search also searches the description of ideas
+- a counter for the total number of ideas found is added to the search filter
 
 
 

@@ -31,6 +31,10 @@
         </div>
     </div> <!-- end filters -->
 
+    <div class="flex justify-between w-full px-4 py-2 mt-4 text-base bg-gray-200 border-none md:w-54 rounded-xl">
+        <span>Ideas found:</span>
+        <span class="">{{ $ideas->total() }}</span>
+    </div>
     <div class="my-8 space-y-6 ideas-container">
 
         @forelse($ideas as $idea)
@@ -44,7 +48,7 @@
 
     {{-- Paginator --}}
     <div class="my-8">
-        {{-- {{ $ideas->onEachSide(5)->links() }} --}}
+        {{-- {{ $ideas->onEachSide(1)->links() }} --}}
         {{ $ideas->links() }}
     </div> {{-- End of paginator --}}
 </div>

@@ -7,9 +7,13 @@ use App\Models\Comment;
 use Livewire\Component;
 use Illuminate\Http\Response;
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\Notifiable;
 
 class CommentNotifications extends Component
 {
+
+    // use Notifiable;
+
     const NOTIFICATION_TRESHOLD = 10;
     public $notifications;
     public $notificationCount;
@@ -26,7 +30,7 @@ class CommentNotifications extends Component
 
     public function getNotificationCount()
     {
-        $this->notificationCount = auth()->user()->unreadNotifications()->count();
+        $this->notificationCount = auth()->user()->unreadNotifications->count();
         if ($this->notificationCount > self::NOTIFICATION_TRESHOLD) {
             $this->notificationCount = self::NOTIFICATION_TRESHOLD . '+';
         }
@@ -50,7 +54,7 @@ class CommentNotifications extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        auth()->user()->unreadNotifications()->markAsRead();
+        auth()->user()->unreadNotifications->markAsRead();
         $this->getNotificationCount();
         $this->getNotifications();
     }

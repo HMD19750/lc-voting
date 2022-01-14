@@ -54,8 +54,11 @@ class SetStatus extends Component
             'is_status_update' => true
         ]);
 
+        // if (auth()->user() != $this->idea->user) {
         $newComment['body'] = "The status of your idea has been changed to " . $this->idea->status->name;
         $this->idea->user->notify(new CommentAdded($newComment));
+        // }
+
 
         $this->emit('statusWasUpdated', 'The status has been updated!');
 

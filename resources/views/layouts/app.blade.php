@@ -43,7 +43,7 @@
                         </a>
                     </form>
 
-                    {{-- <livewire:comment-notifications /> --}}
+                    <livewire:comment-notifications />
 
                 </div>
                 @else

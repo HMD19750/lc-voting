@@ -54,7 +54,7 @@
                                 </svg>
                             </button>
 
-                            <ul class="absolute right-0 z-10 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0"
+                            <ul class="absolute right-0 z-20 py-3 font-semibold text-left bg-white w-44 shadow-dialog rounded-xl md:ml-8 top-8 md:top-6 md:left-0"
                                 x-cloak x-show.transition.origin.top.left="isOpen" @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false">
 
@@ -105,9 +105,9 @@
 
                     </div>
                     <div class="flex items-center mt-4 md:hidden md:mt-0">
-                        <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
+                        <div class="h-10 px-4 py-2 pr-8 mr-12 text-center bg-gray-100 md:mr-0 rounded-xl">
                             <div class="text-sm font-bold leading-none @if($hasVoted) text-blue @endif">{{ $votesCount
-                                }}--</div>
+                                }}</div>
                             <div class="font-semibold leading-none text-gray-400 text-xxs">
                                 {{ $votesCount>0 ? 'Votes' : 'Vote' }}
                             </div>
@@ -131,7 +131,7 @@
     </div> <!-- end idea-container -->
 
     <div class="flex items-center justify-between mt-6 buttons-container">
-        <div class="flex flex-col items-center space-x-4 md:flex-row md:ml-6">
+        <div class="flex flex-row items-center space-x-4 md:ml-6">
 
             <livewire:add-comment :idea="$idea" />
 
@@ -150,7 +150,7 @@
             </div>
 
             @if ($hasVoted)
-                <x-button type="button" color="blue" class="w-32 h11" wire:click.prevent='vote'>Vote</x-button>
+                <x-button type="button" color="blue" class="w-32 h11" wire:click.prevent='vote'>Voted</x-button>
             @else
                 <x-button type="button" class="w-32 h11" color="gray" wire:click.prevent='vote'>Vote</x-button>
             @endif

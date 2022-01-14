@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="mt-8">
+        <div class="mt-8 ">
             @if($hasVoted)
                 <button
                     wire:click.prevent='vote'
@@ -33,12 +33,15 @@
         </div>
     </div>
     <div class="flex flex-col flex-1 px-2 py-6 md:flex-row">
+
         <div class="flex-none mx-2 md:mx-0">
             <a href="#">
                 <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
         </div>
+
         <div class="flex flex-col justify-between w-full mx-2 md:mx-4">
+
             <h4 class="mt-2 text-xl font-semibold md:mt-0">
                 <a href="{{ route('idea.show',$idea) }}" class="idea-link xl:hover:underline">{{ $idea->title }}</a>
             </h4>
@@ -64,6 +67,7 @@
                         {{ $idea->comments_count }} Comments
                     </div>
                 </div>
+
                 <div x-data="{ isOpen: false }" class="flex items-center mt-4 space-x-2 md:mt-0">
                     <div
                         class="{{ $idea->getStatusClasses() }} px-4 py-2 font-bold leading-none text-center uppercase  rounded-full text-xxs w-28 h-7">
@@ -72,6 +76,7 @@
 
                 </div>
 
+                {{-- Vote section on mobile --}}
                 <div class="flex items-center mt-4 md:hidden md:mt-0">
                     <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
                         <div class="text-sm font-bold leading-none @if($hasVoted) text-blue @endif">{{ $votesCount }}
@@ -82,13 +87,13 @@
                     @if($hasVoted)
                     <button
                         wire:click.prevent='vote'
-                        class="w-20 px-4 py-3 -mx-5 font-bold text-white uppercase transition duration-150 ease-in border bg-blue border-blue text-xxs rounded-xl hover:bg-blue-hover">
+                        class="w-20 px-4 py-3 mx-5 font-bold text-white uppercase transition duration-150 ease-in border bg-blue border-blue text-xxs rounded-xl hover:bg-blue-hover">
                         Voted
                     </button>
                     @else
                     <button
                         wire:click.prevent='vote'
-                        class="w-20 px-4 py-3 -mx-5 font-bold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 text-xxs rounded-xl hover:border-gray-400">
+                        class="w-20 px-4 py-3 mx-5 font-bold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 text-xxs rounded-xl hover:border-gray-400">
                         Vote
                     </button>
                     @endif

@@ -17,7 +17,7 @@
 
             @if(!$comment->is_status_update)  {{-- Like button is not shown for status updates --}}
 
-            {{-- Liking is only possible if you have not liked thecomment yet --}}
+            {{-- Liking is only possible if you have not liked the comment yet --}}
                 @if($hasLiked)
                     <button
                         wire:click.prevent='like'

@@ -1,4 +1,4 @@
-## Building a voting App
+## "Building a voting App"
 # Training from Laracasts.com
 
 #Link
@@ -15,21 +15,13 @@ https://laracasts.com/series/build-a-voting-app
 - a counter for the total number of ideas found is added to the search filter
 
 
-
 ## Testing
-For some reason tests started to behave strangly. 
+For some reason tests started to behave strangly. So don't trust them
 
-
-## Toevoegen Markdown voor ideas, comments en status changes
-- Gebruiken van Str::markdown() helper method
-- Gebruiken van typography plugin van Tailwind om de markdown styling goed te krijgen
-- Gebruiken van Flowbite toggle switch
-
-
+## Additions I used for adding markdown
+- The Laravel Str::markdown() helper method
+- The Typography plugin of Tailwind to get the Markdown styling right
+- Use of the Flowbite toggle switch
 
 
 
--------
-
-#Todo
-de achtergrondkleur van de toggle switch in het editformulier aanpassen

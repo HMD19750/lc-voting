@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.2.2",
+        "@themesberg/flowbite": "^1.3.0",
         "markdown-air": "0.0.4"
     }
 }
